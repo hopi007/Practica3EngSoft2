@@ -8,8 +8,7 @@ public class FactoriaEstrategiaDescompteVendaAbsolut extends FactoriaAbstracteEs
 	@Override
 	protected IEstrategiaDescompteVenda obtenirEstrategiaDecompte() {
 		// Pendent d'implementar
-		Registre registre = new Registre();
-		float retorn[] = registre.getPersistencia().getDescompteAbsolut();
+		float retorn[] = Registre.getPersistencia().getDescompteAbsolut();
 
 		return new EstrategiaDescompteVendaAbsolut(retorn[0], retorn[1]);
 	}
