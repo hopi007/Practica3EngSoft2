@@ -1,6 +1,8 @@
 package CapaAplicacio;
 
+import CapaEstrategies.EstrategiaDescompteVendaNula;
 import CapaEstrategies.IEstrategiaDescompteVenda;
+import CapaSingleton.ConfiguracioAplicacio;
 
 
 public abstract class FactoriaAbstracteEstrategiaDescompteVenda {
@@ -10,13 +12,15 @@ public abstract class FactoriaAbstracteEstrategiaDescompteVenda {
 	public static final IEstrategiaDescompteVenda getEstrategiaFixarPreuVenda() {
 		if (estrategiaFixarPreuVenda == null) {
 			try {
+				String configuracio = ConfiguracioAplicacio.getInstancia().getConfiguracioAplicacio("nomFactoriaEstrategiaDescompte");
+				Class<?> classe= Class.forName(configuracio);
+				estrategiaFixarPreuVenda= (IEstrategiaDescompteVenda) classe.getDeclaredConstructor().newInstance();
 				 //Cal que les factories concretes siguin les responsables de crear l'estratègia concreta.
 				//Aquesta classe abstracte ha d'obtenir quina factoria concreta ha de cridar.
 				//La informacío estarà en un fitxer extern.
 				
-				//Pendent d'implementar
-				
 			} catch (Exception e) {
+				estrategiaFixarPreuVenda= new EstrategiaDescompteVendaNula(e.toString());
 				//Si no es pot crear una estratègia concreta, crearem l'estrategia nul·la (sense cap descompte)
 			}
 		}
