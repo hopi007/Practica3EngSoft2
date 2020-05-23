@@ -12,10 +12,13 @@ public class EstrategiaDescompteVendaPercentatge implements
 		this.percentatge = percentatge;
 	}
 
-	//Pendent implementar getTotal
-
-
 	public String toString() {
 		return "Estrategia Descompte Percentatge = " + percentatge;
+	}
+
+	@Override
+	public float getTotal(Venda venda) {
+		float preuAbansDte= venda.getTotalAbansDte();
+		return preuAbansDte-(preuAbansDte*percentatge);
 	}
 }

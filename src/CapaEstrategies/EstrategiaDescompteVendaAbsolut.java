@@ -14,10 +14,16 @@ public class EstrategiaDescompteVendaAbsolut implements
 		this.llinda = llinda;
 	}
 
-	//Pendent implementar getTotal
-
 	public String toString() {
 		return "Estrategia Descompte Absolut: Llinda = " + llinda
 				+ ", descompte = " + descompte;
+	}
+
+	@Override
+	public float getTotal(Venda venda) {
+		float preuAbansDte= venda.getTotalAbansDte();
+		if(preuAbansDte>=llinda)
+			return preuAbansDte-descompte;
+		return preuAbansDte;
 	}
 }
