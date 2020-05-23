@@ -1,10 +1,9 @@
-  
+
 package CapaEstrategies;
 
 import CapaBBDD.Venda;
 
-public class EstrategiaDescompteVendaAbsolut implements
-		IEstrategiaDescompteVenda {
+public class EstrategiaDescompteVendaAbsolut implements IEstrategiaDescompteVenda {
 
 	private float descompte;
 	private float llinda;
@@ -15,15 +14,14 @@ public class EstrategiaDescompteVendaAbsolut implements
 	}
 
 	public String toString() {
-		return "Estrategia Descompte Absolut: Llinda = " + llinda
-				+ ", descompte = " + descompte;
+		return "Estrategia Descompte Absolut: Llinda = " + llinda + ", descompte = " + descompte;
 	}
 
 	@Override
 	public float getTotal(Venda venda) {
-		float preuAbansDte= venda.getTotalAbansDte();
-		if(preuAbansDte>=llinda)
-			return preuAbansDte-descompte;
+		float preuAbansDte = venda.getTotalAbansDte();
+		if (preuAbansDte >= llinda)
+			return preuAbansDte - descompte;
 		return preuAbansDte;
 	}
 }
