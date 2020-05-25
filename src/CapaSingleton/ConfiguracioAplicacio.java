@@ -22,7 +22,7 @@ public class ConfiguracioAplicacio {
 		}
 	}
 
-	public static ConfiguracioAplicacio getInstancia() throws Exception {
+	public synchronized static ConfiguracioAplicacio getInstancia() throws Exception {
 		if (instancia == null)
 			instancia = new ConfiguracioAplicacio();
 
