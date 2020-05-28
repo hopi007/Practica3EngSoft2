@@ -10,9 +10,12 @@ public class EstrategiaDescompteVendaNula implements IEstrategiaDescompteVenda {
 		this.error = error;
 	}
 
-	//Pendent implementar getTotal
-
 	public String toString() {
 		return "No hi ha cap descompte. " + error;
+	}
+
+	@Override
+	public float getTotal(Venda venda) {
+		return venda.getTotalAbansDte();
 	}
 }

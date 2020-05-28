@@ -1,4 +1,4 @@
-  
+
 package CapaSingleton;
 
 import java.io.FileInputStream;
@@ -13,16 +13,23 @@ public class ConfiguracioAplicacio {
 
 	private ConfiguracioAplicacio() throws Exception {
 		try {
-			// Per implementar: Obrir i carregar el fitxer de propietats
+			FileInputStream f = new FileInputStream(NOM_FITXER_EXTERN);
+			propietatsAplicacio = new Properties();
+			propietatsAplicacio.load(f);
+			f.close();
 		} catch (IOException e) {
-			throw new Exception("No es pot carregar la Configuració del Sistema: "
-							+ e.getMessage());
+			throw new Exception("No es pot carregar la Configuració del Sistema: " + e.getMessage());
 		}
 	}
-	
-	// Per implementar getInstancia del patró singleton
+
+	public synchronized static ConfiguracioAplicacio getInstancia() throws Exception {
+		if (instancia == null)
+			instancia = new ConfiguracioAplicacio();
+
+		return instancia;
+	}
 
 	public String getConfiguracioAplicacio(String clau) {
-		// Per implementar retornar el valor de la propietat
+		return propietatsAplicacio.getProperty(clau);
 	}
 }

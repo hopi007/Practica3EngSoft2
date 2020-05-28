@@ -5,5 +5,5 @@ import CapaBBDD.Venda;
 
 public interface IEstrategiaDescompteVenda {
 
-	//Pendent implementar getTotal
+	public abstract float getTotal(Venda venda);
 }
